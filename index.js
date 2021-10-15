@@ -6,11 +6,11 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
-app.post('/', (req, res) => {
+app.post("/", (req, res) => {
 
     const fname = req.body.fname;
     const lname = req.body.lname;
@@ -52,8 +52,8 @@ app.post('/', (req, res) => {
     request.write(jsonData);
     request.end();
 
-    app.post('/fail', (req, res) => {
-        res.redirect('/');
+    app.post("/fail", (req, res) => {
+        res.redirect("/");
     });
 });
 
