@@ -60,10 +60,3 @@ app.post("/", (req, res) => {
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server started on port "3000".... ... .. .`);
 });
-
-//api key 
-//bfaa1867761d4bde203d7f5e4069c974-us5
-
-//id
-//724ff76ec3
-//https://us5.api.mailchimp.com/3.0/lists/724ff76ec3
