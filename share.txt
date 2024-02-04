@@ -1,0 +1,47 @@
+import Image from "next/image";
+import getData from './service';
+import { AgGridReact } from '../ag-grid-react';
+import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, required
+import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
+import styles from './page.module.css';
+
+export default async function Home() {
+  const basicStylingForGridColumn = {
+    resizable: false,
+    cellStyle: { textAlign: 'center' },
+    suppressMovable: true,
+    flex: 2
+  }
+
+  var data = await getData();
+
+  const columnDefs = [
+    { headerName: 'Name', field: 'id', ...basicStylingForGridColumn },
+    { headerName: 'Description', field: 'title', ...basicStylingForGridColumn, wrapText: true, autoHeight: true },
+    { headerName: 'Grade', field: 'grade', ...basicStylingForGridColumn },
+    { headerName: 'total classes', field: 'id', ...basicStylingForGridColumn },
+    { headerName: 'Action', field: 'action', ...basicStylingForGridColumn },
+  ];
+
+  return (
+    <div >
+      <h2>Page Data</h2>
+
+      <button className={styles.button} > Start </button>
+
+      <div className={`ag-theme-alpine ${styles.agThemeAlpine}`}>
+        <AgGridReact
+          columnDefs={columnDefs}
+          rowData={data}
+          suppressRowHoverHighlight={true}
+        ></AgGridReact>
+      </div>
+    </div>
+  )
+};
+
+
+// 1.  merge both page.module.css and page.css into page.module.css file
+// 2.  look and feel same figma images in grid 
+// 3.  test cases jest - quality in code 
+// -- all css should go here (including page.css)
